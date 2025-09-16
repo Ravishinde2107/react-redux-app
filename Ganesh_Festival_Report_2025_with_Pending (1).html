@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
   <meta charset="UTF-8">
   <title>Ganesh Festival Contribution Report 2025</title>
   <style>
@@ -87,11 +88,14 @@
     <p><strong>Sai Shriya Samruddhi Society, Wagholi, Pune</strong></p>
     <p>Organized by: Society Cultural Committee</p>
     <p>Date: 11th September 2025</p>
+	<div style="text-align: center;">
+	<img src="https://5.imimg.com/data5/NL/MA/GLADMIN-6975709/god-hindu-ganesh-ji-photo-frame-1000x1000.png"  style="text-align:center; width="80%" height="900" margin:auto; border-collapse:collapse; font-family:Segoe UI;"/>
+	</div>
   </div>
 
 
   <h2>🌟 Top 10 Contributors</h2>
-  <table border="1" cellspacing="0" cellpadding="8" style="width:80%; margin:auto; border-collapse:collapse; font-family:Segoe UI;">
+  <table border="1" cellspacing="0" cellpadding="8" style="width:80%; height:500; margin:auto; border-collapse:collapse; font-family:Segoe UI;">
     <tr><th>Flat No.</th><th>Name(s)</th><th>Amount (₹)</th></tr>
     <tr><td>B-1203</td><td>Sayan Datta</td><td>1500</td></tr>
     <tr><td>B-1205</td><td>Sachin Thorat</td><td>1111</td></tr>
@@ -522,6 +526,14 @@
       options: {
         responsive: true,
         plugins: {
+			datalabels: {
+            formatter: (value, ctx) => {
+              let sum = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+              let percentage = ((value / sum) * 100).toFixed(1) + '%';
+              return percentage;
+            },
+            color: '#fff',
+          },
           legend: {
             position: 'right'
           },
@@ -530,7 +542,8 @@
             text: 'साई श्रीया समृद्धी सोसायटी - उत्सव खर्चाचे विवरण'
           }
         }
-      }
+      },
+      plugins: [ChartDataLabels]
     });
 </script>
 
