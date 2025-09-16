@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <meta charset="UTF-8">
   <title>Ganesh Festival Contribution Report 2025</title>
   <style>
@@ -66,6 +67,15 @@
       font-size: 16px;
       color: #333;
       margin: 10px 0 0;
+    }
+
+	.row {
+      display: flex;
+    }
+    .column {
+      flex: 50%; /* Each column takes 50% width */
+      padding: 10px;
+      border: 1px solid #ccc;
     }
 
   </style>
@@ -242,7 +252,11 @@
   </table>
 
 <h2>💸 खर्चाचा तपशील – Expense Breakdown</h2>
-<table border="1" cellspacing="0" cellpadding="8" style="width:80%; margin:auto; border-collapse:collapse; font-family:Segoe UI;">
+
+
+<div class="row">
+  <div class="column">
+  <table border="1" cellspacing="0" cellpadding="8" style="width:80%; margin:auto; border-collapse:collapse; font-family:Segoe UI;">
   <thead>
     <tr style="background-color:#ffe0b2;">
       <th>SR No.</th>
@@ -267,6 +281,12 @@
       <td>₹59,687</td>
   </tbody>
 </table>
+  </div>
+  <div class="column">
+    <canvas id="expenseChart" border="1" cellspacing="0" cellpadding="8" style="width:70%; margin:auto; border-collapse:collapse; font-family:Segoe UI;"></canvas>
+  </div>
+</div>
+
 <p></p>
 <table border="1" cellspacing="0" cellpadding="8" style="width:80%; margin:auto; border-collapse:collapse; font-family:Segoe UI;">
   <thead>
@@ -481,6 +501,37 @@
     rowsB[i].cells[0].innerText = i;
 	}
   }
+  
+      const ctx = document.getElementById('expenseChart').getContext('2d');
+    const expenseChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: [
+          'मूर्ती', 'पूजा साहित्य', 'सजावट', 'महाप्रसाद', 'विसर्जन व्यवस्था',
+          'पंडितजी मानधन', 'समई व कलश', 'पुरस्कार', 'स्पीकर दुरुस्ती',
+          'पिण्याचे पाणी', 'इतर खर्च'
+        ],
+        datasets: [{
+          data: [6000, 3009, 3790, 26000, 2631, 2551, 2150, 11000, 1800, 455, 212],
+          backgroundColor: [
+            '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+            '#FF9F40', '#66BB6A', '#EF5350', '#AB47BC', '#FFA726', '#8D6E63'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'right'
+          },
+          title: {
+            display: true,
+            text: 'साई श्रीया समृद्धी सोसायटी - उत्सव खर्चाचे विवरण'
+          }
+        }
+      }
+    });
 </script>
 
 
